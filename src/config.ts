@@ -1,4 +1,4 @@
-const PROPS = ["MOCKED_DATA", "SCOPE", "GITHUB_ORG", "GITHUB_ENT", "GITHUB_TEAM", "GITHUB_TOKEN"];
+const PROPS = ["MOCKED_DATA", "SCOPE", "GITHUB_ORG", "GITHUB_ENT", "GITHUB_TEAM", "GITHUB_TOKEN", "GITHUB_TEAMS"];
 
 const env: any = {};
 PROPS.forEach(prop => {
@@ -12,6 +12,12 @@ PROPS.forEach(prop => {
 });
 
 const VALID_SCOPE = ['organization', 'enterprise'];
+
+let teams;
+if (env.VUE_APP_GITHUB_TEAMS) {
+	teams = env.VUE_APP_GITHUB_TEAMS.split(',').map((team: string) => team.trim());
+	teams.push("All Teams");
+}
 
 let scopeType;
 if (VALID_SCOPE.includes(env.VUE_APP_SCOPE)) {
@@ -46,6 +52,7 @@ const config: Config = {
 		ent: githubEntName,
 		team: env.VUE_APP_GITHUB_TEAM,
 		token: env.VUE_APP_GITHUB_TOKEN,
+		teams: teams,
 		apiUrl
 	}
 }
@@ -67,5 +74,6 @@ interface Config {
 		team: string;
 		token: string;
 		apiUrl: string;
+		teams: string[];
 	}
 }
