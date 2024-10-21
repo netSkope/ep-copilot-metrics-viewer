@@ -184,7 +184,6 @@ export default defineComponent({
       }
 
       if (this.metricsReady === false && (config.github.team.trim() == 'All Teams' || config.github.team.trim() == '')) {
-        console.log('here');
         getMetricsApi().then(data => {
           this.metrics = data;
 
