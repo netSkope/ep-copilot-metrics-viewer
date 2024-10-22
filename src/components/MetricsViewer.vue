@@ -58,7 +58,10 @@
     <v-main class="p-1" style="min-height: 300px;">
 
       <v-container style="min-height: 300px;" class="px-4 elevation-2">
-        <h2>Acceptance rate (%)</h2>
+      <h2>Total Active Users</h2>
+      <Bar :data="totalActiveUsersChartData" :options="totalActiveUsersChartOptions" />
+
+      <h2>Acceptance rate (%)</h2>
       <Bar :data="acceptanceRateChartData" :options="chartOptions" />
 
       <h2>Total Suggestions Count | Total Acceptances Count</h2>
@@ -66,9 +69,6 @@
 
       <h2>Total Lines Suggested | Total Lines Accepted</h2>
       <Line :data="chartData" :options="chartOptions" />
-
-      <h2>Total Active Users</h2>
-      <Bar :data="totalActiveUsersChartData" :options="totalActiveUsersChartOptions" />
 
       </v-container>
     </v-main>

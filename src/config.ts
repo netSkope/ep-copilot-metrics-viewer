@@ -16,7 +16,7 @@ const VALID_SCOPE = ['organization', 'enterprise'];
 let teams;
 if (env.VUE_APP_GITHUB_TEAMS) {
 	teams = env.VUE_APP_GITHUB_TEAMS.split(',').map((team: string) => team.trim());
-	teams.push("All Teams");
+	teams.unshift("All Teams");
 }
 
 let scopeType;
