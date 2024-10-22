@@ -26,11 +26,11 @@
     <v-main class="p-1" style="min-height: 300px;">
         <v-container style="min-height: 300px;" class="px-4 elevation-2">
 
-            <h2>Total Acceptances | Total Turns Count</h2>
-            <Line :data="totalNumberAcceptancesAndTurnsChartData" :options="chartOptions" />
-
             <h2>Total Active Copilot Chat Users</h2>
             <Bar :data="totalActiveCopilotChatUsersChartData" :options="totalActiveChatUsersChartOptions" />
+
+            <h2>Total Acceptances | Total Turns Count</h2>
+            <Line :data="totalNumberAcceptancesAndTurnsChartData" :options="chartOptions" />
 
         </v-container>
     </v-main>
