@@ -90,7 +90,7 @@ export default defineComponent({
       return config.github.org;
     },
     itemName() {
-      return config.scope.type;
+      return 'Code';//config.scope.type;
     },
     capitalizedItemName():string {
       return this.itemName.charAt(0).toUpperCase() + this.itemName.slice(1);
