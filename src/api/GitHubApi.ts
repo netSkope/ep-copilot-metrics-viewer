@@ -21,6 +21,7 @@ export const getMetricsApi = async (): Promise<Metrics[]> => {
     response = config.scope.type === "organization" ? organizationMockedResponse : enterpriseMockedResponse;
     metricsData = response.map((item: any) => new Metrics(item));
   } else {
+    /*
     response = await axios.get(
       `${config.github.apiUrl}/copilot/usage`,
       {
@@ -34,6 +35,9 @@ export const getMetricsApi = async (): Promise<Metrics[]> => {
 
 
     metricsData = response.data.map((item: any) => new Metrics(item));
+    */
+    const teamData = await import(`../../data/copilot-usage-all-teams.json`);
+    metricsData = teamData.default.map((item: any) => new Metrics(item));
   }
   return metricsData;
 };
@@ -54,6 +58,7 @@ export const getTeamMetricsApi = async (): Promise<Metrics[]> => {
   console.log("config.github.team: " + config.github.team);
 
   if (config.github.team && config.github.team.trim() !== '') {
+    /*
     const response = await axios.get(
       `${config.github.apiUrl}/team/${config.github.team}/copilot/usage`,
       {
@@ -66,6 +71,9 @@ export const getTeamMetricsApi = async (): Promise<Metrics[]> => {
     );
 
     return response.data.map((item: any) => new Metrics(item));
+    */
+    const teamData = await import(`../../data/copilot-usage-${config.github.team}.json`);
+    return teamData.default.map((item: any) => new Metrics(item));
   }
   
   return [];
