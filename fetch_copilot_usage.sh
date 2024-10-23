@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. .env
+. "$(dirname "$0")/.env"
 # Read the VUE_APP_GITHUB_TEAMS environment variable
 teams=$(echo $VUE_APP_GITHUB_TEAMS | tr ',' '\n')
 teams="$teams"$'\n'"all-teams"
@@ -9,7 +9,7 @@ teams="$teams"$'\n'"all-teams"
 for team in $teams; do
   echo Processing $team
   # Define the output file path
-  output_file="data/copilot-usage-$team.json"
+  output_file="$(dirname "$0")/public/data/copilot-usage-$team.json"
 
   # Check if the file exists, if not create it with an empty array
   if [ ! -f "$output_file" ]; then

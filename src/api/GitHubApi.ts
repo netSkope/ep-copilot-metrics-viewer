@@ -36,8 +36,20 @@ export const getMetricsApi = async (): Promise<Metrics[]> => {
 
     metricsData = response.data.map((item: any) => new Metrics(item));
     */
+   /*
     const teamData = await import(`../../data/copilot-usage-all-teams.json`);
     metricsData = teamData.default.map((item: any) => new Metrics(item));
+    */
+    const timestamp = new Date().getTime();
+    const url = `../../data/copilot-usage-all-teams.json?timestamp=${timestamp}`;
+    
+    // Fetch the JSON file
+    const teamDataResponse = await fetch(url);
+    if (!teamDataResponse.ok) {
+      throw new Error(`Failed to fetch data from ${url}`);
+    }
+    const teamData = await teamDataResponse.json();
+    metricsData = teamData.map((item: any) => new Metrics(item));
   }
   return metricsData;
 };
@@ -72,8 +84,21 @@ export const getTeamMetricsApi = async (): Promise<Metrics[]> => {
 
     return response.data.map((item: any) => new Metrics(item));
     */
+   /*
     const teamData = await import(`../../data/copilot-usage-${config.github.team}.json`);
     return teamData.default.map((item: any) => new Metrics(item));
+    */
+    const timestamp = new Date().getTime();
+    const url = `../../data/copilot-usage-${config.github.team}.json?timestamp=${timestamp}`;
+    
+    // Fetch the JSON file
+    const teamDataResponse = await fetch(url);
+    if (!teamDataResponse.ok) {
+      throw new Error(`Failed to fetch data from ${url}`);
+    }
+    const teamData = await teamDataResponse.json();
+    const metricsData = teamData.map((item: any) => new Metrics(item));
+    return metricsData;
   }
   
   return [];
